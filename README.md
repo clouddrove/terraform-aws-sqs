@@ -70,7 +70,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### FIFO Queue
 ```hcl
   module "sqs" {
-    source                      = "git::https://github.com/clouddrove/terraform-aws-sqs.git"
+    source                      = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.1"
     name                        = "sqs-fifo"
     application                 = "clouddrove"
     environment                 = "test"
@@ -82,7 +82,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### Standard Queue
 ```hcl
   module "sqs" {
-    source                    = "git::https://github.com/clouddrove/terraform-aws-sqs.git"
+    source                    = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.1"
     name                      = "sqs"
     application               = "clouddrove"
     environment               = "test"

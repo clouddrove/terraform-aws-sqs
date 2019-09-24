@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "sqs" {
-  source = "git::https://github.com/clouddrove/terraform-aws-sqs.git"
+  source = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.1"
 
   name        = "sqs"
   application = "clouddrove"
