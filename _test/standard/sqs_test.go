@@ -30,6 +30,6 @@ func Test(t *testing.T) {
 	Tags := terraform.OutputMap(t, terraformOptions, "tags")
 
 	// Check that we get back the outputs that we expect
-	assert.Equal(t, "test-sqs-clouddrove", Tags["Name"])
+	assert.Equal(t, "test-clouddrove-sqs", Tags["Name"])
 	assert.Contains(t, Arn, "arn:aws:sqs")
 }

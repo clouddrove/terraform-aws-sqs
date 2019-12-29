@@ -70,11 +70,11 @@ Here are some examples of how you can use this module in your inventory structur
 ### FIFO Queue
 ```hcl
   module "sqs" {
-    source                      = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.1"
+    source                      = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.2"
     name                        = "sqs-fifo"
     application                 = "clouddrove"
     environment                 = "test"
-    label_order                 = ["environment", "name", "application"]
+    label_order                 = ["environment", "application", "name"]
     fifo_queue                  = true
     content_based_deduplication = true
   }
@@ -82,11 +82,11 @@ Here are some examples of how you can use this module in your inventory structur
 ### Standard Queue
 ```hcl
   module "sqs" {
-    source                    = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.1"
+    source                    = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.2"
     name                      = "sqs"
     application               = "clouddrove"
     environment               = "test"
-    label_order               = ["environment", "name", "application"]
+    label_order               = ["environment", "application", "name"]
     delay_seconds             = 90
     max_message_size          = 2048
     message_retention_seconds = 86400
@@ -104,7 +104,7 @@ Here are some examples of how you can use this module in your inventory structur
         identifiers = ["*"]
       }
       actions   = ["sqs:SendMessage"]
-      resources = ["arn:aws:sqs:eu-west-1:xxxxxxxxx:test-sqs-clouddrove"]
+      resources = ["arn:aws:sqs:eu-west-1:xxxxxxxxx:test-clouddrove-sqs"]
     }
   }
 ```
