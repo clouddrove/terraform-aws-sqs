@@ -2,13 +2,16 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+data "aws_caller_identity" "current" {}
+
+
 module "sqs" {
-  source = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.1"
+  source = "./../../"
 
   name        = "sqs"
   application = "clouddrove"
   environment = "test"
-  label_order = ["environment", "name", "application"]
+  label_order = ["environment", "application", "name"]
 
   delay_seconds             = 90
   max_message_size          = 2048
@@ -26,7 +29,9 @@ data "aws_iam_policy_document" "document" {
       type        = "AWS"
       identifiers = ["*"]
     }
-    actions   = ["sqs:SendMessage"]
-    resources = ["arn:aws:sqs:eu-west-1:xxxxxxxxx:test-sqs-clouddrove"]
+    actions = ["sqs:SendMessage"]
+    resources = [
+      format("arn:aws:sqs:eu-west-1:%s:test-clouddrove-sqs", data.aws_caller_identity.current.account_id)
+    ]
   }
 }
