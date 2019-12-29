@@ -29,9 +29,9 @@ data "aws_iam_policy_document" "document" {
       type        = "AWS"
       identifiers = ["*"]
     }
-    actions   = ["sqs:SendMessage"]
+    actions = ["sqs:SendMessage"]
     resources = [
       format("arn:aws:sqs:eu-west-1:%s:test-clouddrove-sqs", data.aws_caller_identity.current.account_id)
-      ]
+    ]
   }
 }
