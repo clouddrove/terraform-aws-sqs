@@ -38,7 +38,7 @@
 <hr>
 
 
-We eat, drink, sleep and most importantly love **DevOps**. We are working towards stratergies for standardizing architecture while ensuring security for the infrastructure. We are strong believer of the philosophy <b>Bigger problems are always solved by breaking them into smaller manageable problems</b>. Resonating with microservices architecture, it is considered best-practice to run database, cluster, storage in smaller <b>connected yet manageable pieces</b> within the infrastructure.
+We eat, drink, sleep and most importantly love **DevOps**. We are working towards strategies for standardizing architecture while ensuring security for the infrastructure. We are strong believer of the philosophy <b>Bigger problems are always solved by breaking them into smaller manageable problems</b>. Resonating with microservices architecture, it is considered best-practice to run database, cluster, storage in smaller <b>connected yet manageable pieces</b> within the infrastructure.
 
 This module is basically combination of [Terraform open source](https://www.terraform.io/) and includes automatation tests and examples. It also helps to create and improve your infrastructure with minimalistic code instead of maintaining the whole infrastructure code yourself.
 
@@ -61,7 +61,9 @@ This module has a few dependencies:
 
 
 
+
 ## Examples
+
 
 **IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/clouddrove/terraform-aws-sqs/releases).
 
@@ -70,7 +72,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### FIFO Queue
 ```hcl
   module "sqs" {
-    source                      = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.2"
+    source                      = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.3"
     name                        = "sqs-fifo"
     application                 = "clouddrove"
     environment                 = "test"
@@ -82,7 +84,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### Standard Queue
 ```hcl
   module "sqs" {
-    source                    = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.2"
+    source                    = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.3"
     name                      = "sqs"
     application               = "clouddrove"
     environment               = "test"
@@ -111,29 +113,33 @@ Here are some examples of how you can use this module in your inventory structur
 
 
 
+
+
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| application | Application (e.g. `cd` or `clouddrove`). | string | `` | no |
-| attributes | Additional attributes (e.g. `1`). | list | `<list>` | no |
-| content_based_deduplication | Enables content-based deduplication for FIFO queues. | bool | `false` | no |
-| create | Whether to create SQS queue. | bool | `true` | no |
-| delay_seconds | The time in seconds that the delivery of all messages in the queue will be delayed. An integer from 0 to 900 (15 minutes). | number | `0` | no |
-| delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | string | `-` | no |
-| environment | Environment (e.g. `prod`, `dev`, `staging`). | string | `` | no |
-| fifo_queue | Boolean designating a FIFO queue. | bool | `false` | no |
-| kms_data_key_reuse_period_seconds | The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again. An integer representing seconds, between 60 seconds (1 minute) and 86,400 seconds (24 hours). | number | `300` | no |
-| kms_master_key_id | The ID of an AWS-managed customer master key (CMK) for Amazon SQS or a custom CMK. | string | `` | no |
-| label_order | Label order, e.g. `name`,`application`. | list | `<list>` | no |
-| max_message_size | The limit of how many bytes a message can contain before Amazon SQS rejects it. An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB). | number | `262144` | no |
-| message_retention_seconds | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days). | number | `345600` | no |
-| name | Name  (e.g. `app` or `cluster`). | string | `` | no |
-| policy | The JSON policy for the SQS queue. | string | `` | no |
-| receive_wait_time_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). | number | `0` | no |
-| redrive_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string ("5"). | string | `` | no |
-| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | map | `<map>` | no |
-| visibility_timeout_seconds | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). | number | `30` | no |
+| application | Application \(e.g. `cd` or `clouddrove`\). | string | `""` | no |
+| attributes | Additional attributes \(e.g. `1`\). | list | `<list>` | no |
+| content\_based\_deduplication | Enables content-based deduplication for FIFO queues. | bool | `"false"` | no |
+| create | Whether to create SQS queue. | bool | `"true"` | no |
+| delay\_seconds | The time in seconds that the delivery of all messages in the queue will be delayed. An integer from 0 to 900 \(15 minutes\). | number | `"0"` | no |
+| delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | string | `"-"` | no |
+| environment | Environment \(e.g. `prod`, `dev`, `staging`\). | string | `""` | no |
+| fifo\_queue | Boolean designating a FIFO queue. | bool | `"false"` | no |
+| kms\_data\_key\_reuse\_period\_seconds | The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again. An integer representing seconds, between 60 seconds \(1 minute\) and 86,400 seconds \(24 hours\). | number | `"300"` | no |
+| kms\_master\_key\_id | The ID of an AWS-managed customer master key \(CMK\) for Amazon SQS or a custom CMK. | string | `""` | no |
+| label\_order | Label order, e.g. `name`,`application`. | list | `<list>` | no |
+| managedby | ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'. | string | `"anmol@clouddrove.com"` | no |
+| max\_message\_size | The limit of how many bytes a message can contain before Amazon SQS rejects it. An integer from 1024 bytes \(1 KiB\) up to 262144 bytes \(256 KiB\). | number | `"262144"` | no |
+| message\_retention\_seconds | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 \(1 minute\) to 1209600 \(14 days\). | number | `"345600"` | no |
+| name | Name  \(e.g. `app` or `cluster`\). | string | `""` | no |
+| policy | The JSON policy for the SQS queue. | string | `""` | no |
+| receive\_wait\_time\_seconds | The time for which a ReceiveMessage call will wait for a message to arrive \(long polling\) before returning. An integer from 0 to 20 \(seconds\). | number | `"0"` | no |
+| redrive\_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer \(5\), and not a string \("5"\). | string | `""` | no |
+| tags | Additional tags \(e.g. map\(`BusinessUnit`,`XYZ`\). | map | `<map>` | no |
+| visibility\_timeout\_seconds | The visibility timeout for the queue. An integer from 0 to 43200 \(12 hours\). | number | `"30"` | no |
 
 ## Outputs
 
@@ -145,8 +151,8 @@ Here are some examples of how you can use this module in your inventory structur
 
 
 
-## Testing
 
+## Testing
 In this module testing is performed with [terratest](https://github.com/gruntwork-io/terratest) and it creates a small piece of infrastructure, matches the output like ARN, ID and Tags name etc and destroy infrastructure in your AWS account. This testing is written in GO, so you need a [GO environment](https://golang.org/doc/install) in your system.
 
 You need to run the following command in the testing folder:
