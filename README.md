@@ -14,7 +14,7 @@
 <p align="center">
 
 <a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v0.12-green" alt="Terraform">
+  <img src="https://img.shields.io/badge/terraform-v0.13-green" alt="Terraform">
 </a>
 <a href="LICENSE.md">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="Licence">
@@ -51,7 +51,7 @@ We have [*fifty plus terraform modules*][terraform_modules]. A few of them are c
 
 This module has a few dependencies:
 
-- [Terraform 0.12](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Terraform 0.13](https://learn.hashicorp.com/terraform/getting-started/install.html)
 - [Go](https://golang.org/doc/install)
 - [github.com/stretchr/testify/assert](https://github.com/stretchr/testify)
 - [github.com/gruntwork-io/terratest/modules/terraform](https://github.com/gruntwork-io/terratest)
@@ -72,7 +72,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### FIFO Queue
 ```hcl
   module "sqs" {
-    source                      = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.3"
+    source                      = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.13.0"
     name                        = "sqs-fifo"
     application                 = "clouddrove"
     environment                 = "test"
@@ -84,7 +84,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### Standard Queue
 ```hcl
   module "sqs" {
-    source                    = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.12.3"
+    source                    = "git::https://github.com/clouddrove/terraform-aws-sqs.git?ref=tags/0.13.0"
     name                      = "sqs"
     application               = "clouddrove"
     environment               = "test"
