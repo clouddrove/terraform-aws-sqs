@@ -6,10 +6,16 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
-variable "application" {
+variable "repository" {
   type        = string
   default     = ""
-  description = "Application (e.g. `cd` or `clouddrove`)."
+  description = "Terraform current module repo"
+
+  validation {
+    # regex(...) fails if it cannot find a match
+    condition     = can(regex("^https://", var.repository))
+    error_message = "The module-repo value must be a valid Git repo link."
+  }
 }
 
 variable "environment" {
@@ -44,8 +50,8 @@ variable "tags" {
 
 variable "managedby" {
   type        = string
-  default     = "anmol@clouddrove.com"
-  description = "ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'."
+  default     = "hello@clouddrove.com"
+  description = "ManagedBy, eg 'CloudDrove'."
 }
 
 # Module      : SQS
@@ -89,12 +95,14 @@ variable "receive_wait_time_seconds" {
 variable "policy" {
   type        = string
   default     = ""
+  sensitive   = true
   description = "The JSON policy for the SQS queue."
 }
 
 variable "redrive_policy" {
   type        = string
   default     = ""
+  sensitive   = true
   description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")."
 }
 
@@ -113,6 +121,7 @@ variable "content_based_deduplication" {
 variable "kms_master_key_id" {
   type        = string
   default     = ""
+  sensitive   = true
   description = "The ID of an AWS-managed customer master key (CMK) for Amazon SQS or a custom CMK."
 }
 

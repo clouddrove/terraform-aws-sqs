@@ -9,9 +9,9 @@ module "sqs" {
   source = "./../../"
 
   name        = "sqs"
-  application = "clouddrove"
+  repository  = "https://registry.terraform.io/modules/clouddrove/sqs/aws/0.14.0"
   environment = "test"
-  label_order = ["environment", "application", "name"]
+  label_order = ["name", "environment"]
 
   delay_seconds             = 90
   max_message_size          = 2048
