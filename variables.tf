@@ -8,14 +8,8 @@ variable "name" {
 
 variable "repository" {
   type        = string
-  default     = ""
+  default     = "https://registry.terraform.io/modules/clouddrove/sqs/aws"
   description = "Terraform current module repo"
-
-  validation {
-    # regex(...) fails if it cannot find a match
-    condition     = can(regex("^https://", var.repository))
-    error_message = "The module-repo value must be a valid Git repo link."
-  }
 }
 
 variable "environment" {
@@ -56,7 +50,7 @@ variable "managedby" {
 
 # Module      : SQS
 # Description : Terraform SQS module variables.
-variable "create" {
+variable "enabled" {
   type        = bool
   default     = true
   description = "Whether to create SQS queue."

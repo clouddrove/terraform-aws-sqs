@@ -40,7 +40,6 @@ usage : |-
       source                      = "clouddrove/sqs/aws"
       version                     = "0.14.0"
       name                        = "sqs-fifo"
-      repository                  = "https://registry.terraform.io/modules/clouddrove/sqs/aws/0.14.0"
       environment                 = "test"
       label_order                 = ["name", "environment"]
       fifo_queue                  = true
@@ -51,9 +50,8 @@ usage : |-
   ```hcl
     module "sqs" {
       source                    = "clouddrove/sqs/aws"
-      version                   = "0.13.0"
+      version                   = "0.14.0"
       name                      = "sqs"
-      repository                = "https://registry.terraform.io/modules/clouddrove/sqs/aws/0.14.0"
       environment               = "test"
       label_order               = ["name", "environment"]
       delay_seconds             = 90
