@@ -5,9 +5,10 @@ provider "aws" {
 module "sqs" {
   source = "./../../"
 
-  name        = "sqs-fifo"
-  environment = "test"
-  label_order = ["name", "environment"]
+  name                        = "sqs-fifo"
+  environment                 = "test"
+  label_order                 = ["name", "environment"]
+
   enabled                     = true
   fifo_queue                  = true
   content_based_deduplication = true
