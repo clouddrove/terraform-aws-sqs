@@ -16,7 +16,7 @@ github_repo: clouddrove/terraform-aws-sqs
 # Badges to display
 badges:
   - name: "Terraform"
-    image: "https://img.shields.io/badge/terraform-v0.13-green"
+    image: "https://img.shields.io/badge/terraform-v0.14-green"
     url: "https://www.terraform.io"
   - name: "Licence"
     image: "https://img.shields.io/badge/License-MIT-blue.svg"
@@ -38,11 +38,10 @@ usage : |-
   ```hcl
     module "sqs" {
       source                      = "clouddrove/sqs/aws"
-      version                     = "0.13.0"
+      version                     = "0.14.0"
       name                        = "sqs-fifo"
-      application                 = "clouddrove"
       environment                 = "test"
-      label_order                 = ["environment", "application", "name"]
+      label_order                 = ["name", "environment"]
       fifo_queue                  = true
       content_based_deduplication = true
     }
@@ -51,11 +50,10 @@ usage : |-
   ```hcl
     module "sqs" {
       source                    = "clouddrove/sqs/aws"
-      version                   = "0.13.0"
+      version                   = "0.14.0"
       name                      = "sqs"
-      application               = "clouddrove"
       environment               = "test"
-      label_order               = ["environment", "application", "name"]
+      label_order               = ["name", "environment"]
       delay_seconds             = 90
       max_message_size          = 2048
       message_retention_seconds = 86400

@@ -6,10 +6,10 @@ module "sqs" {
   source = "./../../"
 
   name        = "sqs-fifo"
-  application = "clouddrove"
   environment = "test"
-  label_order = ["environment", "application", "name"]
+  label_order = ["name", "environment"]
 
+  enabled                     = true
   fifo_queue                  = true
   content_based_deduplication = true
 }

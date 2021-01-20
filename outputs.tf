@@ -1,5 +1,5 @@
 # Module      : SQS
-# Description : Terraform module to create SQS resource on AWS for managing queue.
+# Description : Terraform SQS module outputs.
 output "id" {
   value       = join("", aws_sqs_queue.default.*.id)
   description = "The URL for the created Amazon SQS queue."

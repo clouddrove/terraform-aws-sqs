@@ -9,10 +9,10 @@ module "sqs" {
   source = "./../../"
 
   name        = "sqs"
-  application = "clouddrove"
   environment = "test"
-  label_order = ["environment", "application", "name"]
+  label_order = ["name", "environment"]
 
+  enabled                   = true
   delay_seconds             = 90
   max_message_size          = 2048
   message_retention_seconds = 86400

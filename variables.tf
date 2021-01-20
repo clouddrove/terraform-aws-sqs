@@ -6,10 +6,10 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
-variable "application" {
+variable "repository" {
   type        = string
-  default     = ""
-  description = "Application (e.g. `cd` or `clouddrove`)."
+  default     = "https://registry.terraform.io/modules/clouddrove/sqs/aws"
+  description = "Terraform current module repo"
 }
 
 variable "environment" {
@@ -19,13 +19,13 @@ variable "environment" {
 }
 
 variable "label_order" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Label order, e.g. `name`,`application`."
 }
 
 variable "attributes" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Additional attributes (e.g. `1`)."
 }
@@ -37,20 +37,20 @@ variable "delimiter" {
 }
 
 variable "tags" {
-  type        = map
+  type        = map(any)
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
 
 variable "managedby" {
   type        = string
-  default     = "anmol@clouddrove.com"
-  description = "ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'."
+  default     = "hello@clouddrove.com"
+  description = "ManagedBy, eg 'CloudDrove'."
 }
 
 # Module      : SQS
 # Description : Terraform SQS module variables.
-variable "create" {
+variable "enabled" {
   type        = bool
   default     = true
   description = "Whether to create SQS queue."
@@ -89,12 +89,14 @@ variable "receive_wait_time_seconds" {
 variable "policy" {
   type        = string
   default     = ""
+  sensitive   = true
   description = "The JSON policy for the SQS queue."
 }
 
 variable "redrive_policy" {
   type        = string
   default     = ""
+  sensitive   = true
   description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")."
 }
 
@@ -113,6 +115,7 @@ variable "content_based_deduplication" {
 variable "kms_master_key_id" {
   type        = string
   default     = ""
+  sensitive   = true
   description = "The ID of an AWS-managed customer master key (CMK) for Amazon SQS or a custom CMK."
 }
 

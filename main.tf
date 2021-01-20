@@ -7,19 +7,20 @@
 #              for resources. You can use terraform-labels to implement a strict naming
 #              convention.
 module "labels" {
-  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.13.0"
+  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.14.0"
 
   name        = var.name
-  application = var.application
+  repository  = var.repository
   environment = var.environment
   managedby   = var.managedby
+  attributes  = var.attributes
   label_order = var.label_order
 }
 
 # Module      : SQS
 # Description : Terraform module to create SQS resource on AWS for managing queue.
 resource "aws_sqs_queue" "default" {
-  count = var.create ? 1 : 0
+  count = var.enabled ? 1 : 0
 
   name                              = var.fifo_queue ? format("%s.fifo", module.labels.id) : module.labels.id
   visibility_timeout_seconds        = var.visibility_timeout_seconds
