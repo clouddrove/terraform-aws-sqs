@@ -73,7 +73,7 @@ Here are some examples of how you can use this module in your inventory structur
 ```hcl
   module "sqs" {
     source                      = "clouddrove/sqs/aws"
-    version                     = "0.14.0"
+    version                     = "0.15.0"
     name                        = "sqs-fifo"
     environment                 = "test"
     label_order                 = ["name", "environment"]
@@ -85,7 +85,7 @@ Here are some examples of how you can use this module in your inventory structur
 ```hcl
   module "sqs" {
     source                    = "clouddrove/sqs/aws"
-    version                   = "0.14.0"
+    version                   = "0.15.0"
     name                      = "sqs"
     environment               = "test"
     label_order               = ["name", "environment"]
@@ -137,7 +137,7 @@ Here are some examples of how you can use this module in your inventory structur
 | policy | The JSON policy for the SQS queue. | `string` | `""` | no |
 | receive\_wait\_time\_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). | `number` | `0` | no |
 | redrive\_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string ("5"). | `string` | `""` | no |
-| repository | Terraform current module repo | `string` | `"https://registry.terraform.io/modules/clouddrove/sqs/aws"` | no |
+| repository | Terraform current module repo | `string` | `"https://github.com/clouddrove/terraform-aws-sqs"` | no |
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(any)` | `{}` | no |
 | visibility\_timeout\_seconds | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). | `number` | `30` | no |
 
