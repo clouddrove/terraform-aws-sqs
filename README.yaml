@@ -38,7 +38,7 @@ usage : |-
   ```hcl
     module "sqs" {
       source                      = "clouddrove/sqs/aws"
-      version                     = "0.14.0"
+      version                     = "0.15.0"
       name                        = "sqs-fifo"
       environment                 = "test"
       label_order                 = ["name", "environment"]
@@ -50,7 +50,7 @@ usage : |-
   ```hcl
     module "sqs" {
       source                    = "clouddrove/sqs/aws"
-      version                   = "0.14.0"
+      version                   = "0.15.0"
       name                      = "sqs"
       environment               = "test"
       label_order               = ["name", "environment"]

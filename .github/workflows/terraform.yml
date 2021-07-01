@@ -33,19 +33,19 @@ jobs:
           aws-secret-access-key: ${{ secrets.TEST_AWS_ACCESS_SECRET_KEY }}
           aws-region: us-east-2
 
-      - name: 'Terraform init'
+      - name: 'Terraform init for fifo'
         uses: 'clouddrove/github-actions@v6.0'
         with:
           actions_subcommand: 'init'
           tf_actions_working_dir: ./_example/fifo
 
-      - name: 'Terraform validate'
+      - name: 'Terraform validate for fifo'
         uses: 'clouddrove/github-actions@v6.0'
         with:
           actions_subcommand: 'validate'
           tf_actions_working_dir: ./_example/fifo
 
-      - name: 'Terraform plan'
+      - name: 'Terraform plan for fifo'
         uses: 'clouddrove/github-actions@v6.0'
         with:
           actions_subcommand: 'plan'
@@ -67,20 +67,50 @@ jobs:
           aws-secret-access-key: ${{ secrets.TEST_AWS_ACCESS_SECRET_KEY }}
           aws-region: us-east-2
 
-      - name: 'Terraform init'
+      - name: 'Terraform init for standard'
         uses: 'clouddrove/github-actions@v6.0'
         with:
           actions_subcommand: 'init'
           tf_actions_working_dir: ./_example/standard
 
-      - name: 'Terraform validate'
+      - name: 'Terraform validate for standard'
         uses: 'clouddrove/github-actions@v6.0'
         with:
-          actions_subcommand: 'validate'
+          actions_subcommand: 'validate for standard'
           tf_actions_working_dir: ./_example/standard
 
-      - name: 'Terraform plan'
+      - name: 'Terraform plan for standard'
         uses: 'clouddrove/github-actions@v6.0'
         with:
           actions_subcommand: 'plan'
           tf_actions_working_dir: ./_example/standard
+
+  pre-commit:
+    name: 'Pre-Commit'
+    needs:
+      - fmt
+      - fifo
+      - standard
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2.3.4
+
+      - name: 'Install Tflint'
+        run: |
+          curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+
+      - name: 'Pre-Commit 🔎'
+        uses: pre-commit/action@v2.0.3
+        continue-on-error: true
+
+      - name: 'Slack Notification'
+        uses: clouddrove/action-slack@v2
+        with:
+          status: ${{ job.status }}
+          fields: repo,author
+          author_name: 'CloudDrove'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_TERRAFORM }} # required
+        if: always()
