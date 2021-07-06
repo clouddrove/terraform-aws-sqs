@@ -5,3 +5,7 @@
 .idea
 *.iml
 *.terraform.lock.hcl
+_test/fifo/go.mod
+_test/fifo/go.sum
+_test/standard/go.sum
+_test/standard/go.mod
