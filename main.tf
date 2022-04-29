@@ -22,7 +22,7 @@ module "labels" {
 # Description : Terraform module to create SQS resource on AWS for managing queue.
 resource "aws_sqs_queue" "default" {
   count = var.enabled ? 1 : 0
-
+#tfsec:ignore:aws-sqs-enable-queue-encryption
   name                              = var.fifo_queue ? format("%s.fifo", module.labels.id) : module.labels.id
   visibility_timeout_seconds        = var.visibility_timeout_seconds
   message_retention_seconds         = var.message_retention_seconds
