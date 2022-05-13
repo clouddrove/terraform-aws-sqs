@@ -20,6 +20,7 @@ module "labels" {
 
 # Module      : SQS
 # Description : Terraform module to create SQS resource on AWS for managing queue.
+#tfsec:ignore:aws-sqs-enable-queue-encryption
 resource "aws_sqs_queue" "default" {
   count = var.enabled ? 1 : 0
 
