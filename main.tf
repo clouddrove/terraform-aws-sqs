@@ -31,6 +31,7 @@ resource "aws_sqs_queue" "default" {
   delay_seconds                     = var.delay_seconds
   receive_wait_time_seconds         = var.receive_wait_time_seconds
   policy                            = var.policy
+  sqs_managed_sse_enabled           = var.sqs_managed_sse_enabled
   redrive_policy                    = var.redrive_policy
   fifo_queue                        = var.fifo_queue
   content_based_deduplication       = var.content_based_deduplication

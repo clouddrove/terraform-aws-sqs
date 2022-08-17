@@ -114,7 +114,7 @@ variable "content_based_deduplication" {
 
 variable "kms_master_key_id" {
   type        = string
-  default     = ""
+  default     = null
   sensitive   = true
   description = "The ID of an AWS-managed customer master key (CMK) for Amazon SQS or a custom CMK."
 }
@@ -123,4 +123,10 @@ variable "kms_data_key_reuse_period_seconds" {
   type        = number
   default     = 300
   description = "The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again. An integer representing seconds, between 60 seconds (1 minute) and 86,400 seconds (24 hours)."
+}
+
+variable "sqs_managed_sse_enabled" {
+  type        = bool
+  default     = false
+  description = "Boolean to enable server-side encryption (SSE) of message content with SQS-owned encryption keys."
 }

@@ -12,4 +12,5 @@ module "sqs" {
   enabled                     = true
   fifo_queue                  = true
   content_based_deduplication = true
+  sqs_managed_sse_enabled     = false
 }
