@@ -79,7 +79,7 @@ Here are some examples of how you can use this module in your inventory structur
 ```hcl
   module "sqs" {
     source                      = "clouddrove/sqs/aws"
-    version                     = "1.0.1"
+    version                     = "1.3.0"
     name                        = "sqs-fifo"
     environment                 = "test"
     label_order                 = ["name", "environment"]
@@ -91,7 +91,7 @@ Here are some examples of how you can use this module in your inventory structur
 ```hcl
   module "sqs" {
     source                    = "clouddrove/sqs/aws"
-    version                   = "1.0.1"
+    version                   = "1.3.0"
     name                      = "sqs"
     environment               = "test"
     label_order               = ["name", "environment"]
