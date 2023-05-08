@@ -10,6 +10,10 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "terraform" # See documentation for possible values
-    directory: "_example/" # Location of package manifests
+    directory: "_example/fifo" # Location of package manifests
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "terraform" # See documentation for possible values
+    directory: "_example/standard" # Location of package manifests
     schedule:
       interval: "weekly"
