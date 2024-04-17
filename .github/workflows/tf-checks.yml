@@ -8,8 +8,8 @@ jobs:
   fifo:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.0.9
     with:
-      working_directory: './_example/fifo/'
+      working_directory: './examples/fifo/'
   satndard:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.0.9
     with:
-      working_directory: './_example/standard/'
+      working_directory: './examples/standard/'
