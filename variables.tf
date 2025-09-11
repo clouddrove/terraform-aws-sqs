@@ -130,3 +130,28 @@ variable "sqs_managed_sse_enabled" {
   default     = false
   description = "Boolean to enable server-side encryption (SSE) of message content with SQS-owned encryption keys."
 }
+
+variable "create_queue_policy" {
+  description = "Whether to create SQS queue policy"
+  type        = bool
+  default     = false
+
+}
+
+variable "source_queue_policy_documents" {
+  description = "List of IAM policy documents that are merged together into the exported document. Statements must have unique `sid`s"
+  type        = list(string)
+  default     = []
+}
+
+variable "override_queue_policy_documents" {
+  description = "List of IAM policy documents that are merged together into the exported document. In merging, statements with non-blank `sid`s will override statements with the same `sid`"
+  type        = list(string)
+  default     = []
+}
+
+variable "queue_policy_statements" {
+  description = "A map of IAM policy [statements](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#statement) for custom permission usage"
+  type        = any
+  default     = {}
+}

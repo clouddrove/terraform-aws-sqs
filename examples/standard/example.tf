@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 data "aws_caller_identity" "current" {}
-
+data "aws_partition" "current" {}
 
 module "sqs" {
   source = "./../../"
@@ -19,6 +19,25 @@ module "sqs" {
   receive_wait_time_seconds = 10
   sqs_managed_sse_enabled   = true
   policy                    = data.aws_iam_policy_document.document.json
+
+  create_queue_policy = true
+
+  queue_policy_statements = {
+    account = {
+      sid = "AllowAllAccount"
+      actions = [
+        "sqs:SendMessage",
+        "sqs:ReceiveMessage",
+      ]
+      principals = [
+        {
+          type        = "AWS"
+          identifiers = ["arn:${data.aws_partition.current.partition}:iam::${data.aws_caller_identity.current.account_id}:root"]
+        }
+      ]
+    }
+  }
+
 }
 
 data "aws_iam_policy_document" "document" {
