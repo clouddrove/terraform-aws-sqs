@@ -31,3 +31,4 @@
 | arn | The ARN of the SQS queue. |
 | id | The URL for the created Amazon SQS queue. |
 | tags | A mapping of tags to assign to the resource. |
+
