@@ -12,7 +12,7 @@ jobs:
     secrets:
       BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
   satndard:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
     with:
       working_directory: './examples/standard/'
       provider: aws
