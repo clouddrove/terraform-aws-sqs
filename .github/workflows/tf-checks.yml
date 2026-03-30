@@ -11,6 +11,7 @@ jobs:
     with:
       working_directory: './examples/fifo/'
       provider: aws
+      enable_plan: true
     secrets:
       BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
   satndard:
@@ -19,5 +20,6 @@ jobs:
     with:
       working_directory: './examples/standard/'
       provider: aws
+      enable_plan: true
     secrets:
       BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
