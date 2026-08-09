@@ -1,5 +1,9 @@
 name: 'PR Validation'
 
+permissions:
+  contents: read
+  pull-requests: read
+
 on:
   pull_request_target:
     types:
@@ -10,19 +14,8 @@ on:
 
 jobs:
   pr-validation:
-    uses: clouddrove/github-shared-workflows/.github/workflows/pr_checks.yml@master
-    secrets: inherit
+    if: github.actor != 'dependabot[bot]'
+    uses: clouddrove/github-shared-workflows/.github/workflows/pr-checks.yml@v2
     with:
-      types: |
-        fix
-        feat
-        docs
-        ci
-        chore
-        test
-        refactor
-        style
-        perf
-        build
-        revert
-      checkLabels: true  # Set to false to disable label checking
+      commitlintConfig: commitlint.config.cjs
+      checkLabels: true
